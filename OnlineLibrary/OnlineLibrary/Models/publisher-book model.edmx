@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectDBModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BId" />
+          </Key>
+          <Property Name="BId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bname" Type="nvarchar" MaxLength="30" />
+          <Property Name="Bauthor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Bprice" Type="int" />
+          <Property Name="no_of_books" Type="int" />
+          <Property Name="catagry_Id" Type="int" Nullable="false" />
+          <Property Name="publisher-id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catagries">
+          <Key>
+            <PropertyRef Name="catId" />
+          </Key>
+          <Property Name="catId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catagry_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="P-id" />
+          </Key>
+          <Property Name="P-id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P-name" Type="nvarchar" MaxLength="50" />
+          <Property Name="P-address" Type="nvarchar" MaxLength="200" />
+          <Property Name="P-contact-no" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK__Book__catagry_Id__5AEE82B9">
+          <End Role="catagries" Type="Self.catagries" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catagries">
+              <PropertyRef Name="catId" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="catagry_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__publisher-__02084FDA">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="P-id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="publisher-id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectDBModel2StoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="catagries" EntityType="Self.catagries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Book__catagry_Id__5AEE82B9" Association="Self.FK__Book__catagry_Id__5AEE82B9">
+            <End Role="catagries" EntitySet="catagries" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__publisher-__02084FDA" Association="Self.FK__Book__publisher-__02084FDA">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectDBModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BId" />
+          </Key>
+          <Property Name="BId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Bauthor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Bprice" Type="Int32" />
+          <Property Name="no_of_books" Type="Int32" />
+          <Property Name="catagry_Id" Type="Int32" Nullable="false" />
+          <Property Name="publisher_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catagry" Relationship="Self.FK__Book__catagry_Id__5AEE82B9" FromRole="Book" ToRole="catagries" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK__Book__publisher___02084FDA" FromRole="Book" ToRole="Publisher" />
+        </EntityType>
+        <EntityType Name="catagry">
+          <Key>
+            <PropertyRef Name="catId" />
+          </Key>
+          <Property Name="catId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catagry_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__catagry_Id__5AEE82B9" FromRole="catagries" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="P_id" />
+          </Key>
+          <Property Name="P_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="P_address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="P_contact_no" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__publisher___02084FDA" FromRole="Publisher" ToRole="Book" />
+        </EntityType>
+        <Association Name="FK__Book__catagry_Id__5AEE82B9">
+          <End Role="catagries" Type="Self.catagry" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catagries">
+              <PropertyRef Name="catId" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="catagry_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__publisher___02084FDA">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="P_id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="publisher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectDBEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="catagries" EntityType="Self.catagry" />
+          <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+          <AssociationSet Name="FK__Book__catagry_Id__5AEE82B9" Association="Self.FK__Book__catagry_Id__5AEE82B9">
+            <End Role="catagries" EntitySet="catagries" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__publisher___02084FDA" Association="Self.FK__Book__publisher___02084FDA">
+            <End Role="Publisher" EntitySet="Publishers" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectDBModel2StoreContainer" CdmEntityContainer="ProjectDBEntities3">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="ProjectDBModel2.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="BId" ColumnName="BId" />
+                <ScalarProperty Name="Bname" ColumnName="Bname" />
+                <ScalarProperty Name="Bauthor" ColumnName="Bauthor" />
+                <ScalarProperty Name="Bprice" ColumnName="Bprice" />
+                <ScalarProperty Name="no_of_books" ColumnName="no_of_books" />
+                <ScalarProperty Name="catagry_Id" ColumnName="catagry_Id" />
+                <ScalarProperty Name="publisher_id" ColumnName="publisher-id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catagries">
+            <EntityTypeMapping TypeName="ProjectDBModel2.catagry">
+              <MappingFragment StoreEntitySet="catagries">
+                <ScalarProperty Name="catId" ColumnName="catId" />
+                <ScalarProperty Name="catagry_name" ColumnName="catagry_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="ProjectDBModel2.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="P_id" ColumnName="P-id" />
+                <ScalarProperty Name="P_name" ColumnName="P-name" />
+                <ScalarProperty Name="P_address" ColumnName="P-address" />
+                <ScalarProperty Name="P_contact_no" ColumnName="P-contact-no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

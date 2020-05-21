@@ -29,10 +29,5 @@ namespace OnlineLibrary.Models
         public virtual DbSet<catagry> catagries { get; set; }
 
         public System.Data.Entity.DbSet<OnlineLibrary.Models.UsersTable> UsersTables { get; set; }
-
-        internal void Set(int? count)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

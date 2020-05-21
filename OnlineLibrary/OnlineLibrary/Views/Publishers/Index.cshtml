@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OnlineLibrary.Models.Publisher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+    <h1 class="glyphicon glyphicon-user">Publisher </h1>
+
+<p>
+    @*@Html.ActionLink("Add Publisher", "Create",null,new {@class= "btn btn-primary" })*@
+    <a href="@Url.Action("Create","Publishers")" class="btn btn-primary" target="_blank">
+        <span class="glyphicon glyphicon-heart"></span>
+        New Publisher
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.P_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_contact_no)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_contact_no)
+        </td>
+        <td>
+            @*@Html.ActionLink("Update", "Edit", new { id = item.P_id },new { @class = "btn btn-success " })*@
+
+            <a href="@Url.Action("Edit","Publishers",new { id=item.P_id}) " class="btn btn-success ">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+                Update
+            </a>|
+
+            @*@Html.ActionLink("Details", "Details", new { id = item.P_id },new {@class="btn btn-toolbar"})*@
+            <a href="@Url.Action("Details","Publishers",new { id=item.P_id}) " class="btn btn-toolbar ">
+                <span class="glyphicon glyphicon-baby-formula"></span>
+                Details
+            </a>|
+
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.P_id },new {@class="btn btn-danger"})*@
+            <a href="@Url.Action("Delete","Publishers",new { id=item.P_id}) " class="btn btn-danger ">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+                Delete
+            </a>
+
+
+        </td>
+    </tr>
+}
+
+</table>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,7 +12,7 @@ namespace OnlineLibrary.Controllers
 {
     public class BooksController : Controller
     {
-        private ProjectDBEntities2 db = new ProjectDBEntities2();
+        private ProjectDBEntities3 db = new ProjectDBEntities3();
 
         // GET: Admin
         public ActionResult Index()
@@ -61,7 +60,7 @@ namespace OnlineLibrary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BId,Bname,Bauthor,Bprice,no_of_books,Catagry_Id")] Book book)
+        public ActionResult Create([Bind(Include = "BId,Bname,Bauthor,Bprice,no_of_books,Catagry_Id, publisher_id")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +93,7 @@ namespace OnlineLibrary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include ="BId,Bname,Bauthor,Bprice,no_of_books,catagry_Id")] Book book)
+        public ActionResult Edit([Bind(Include = "BId,Bname,Bauthor,Bprice,no_of_books,catagry_Id, publisher_id")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -135,15 +134,6 @@ namespace OnlineLibrary.Controllers
            // var listOfProducts = db.Products.Where(x => x.category_id == categoryID).ToList();
             return View(listOfBooks);
         }
-
-        public ActionResult Search_ByAdmin(string key)
-        {
-            var listOfBooks = db.Books.Where(x => x.Bname == key).ToList();
-            // var listOfProducts = db.Products.Where(x => x.category_id == categoryID).ToList();
-
-            return View(listOfBooks);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -151,16 +141,6 @@ namespace OnlineLibrary.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult Borrow(int id)
-        {
-            Book book = db.Books.Find(id);
-            int count_of_books = book.no_of_books.Value;
-            book.no_of_books = count_of_books - 1;
-            db.Entry(book).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index2");
         }
 
 

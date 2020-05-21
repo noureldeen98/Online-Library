@@ -32,7 +32,10 @@
             @Html.DisplayNameFor(model => model.no_of_books)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.catagry_Id)
+            @Html.DisplayNameFor(model => model.catagry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher)
         </th>
         <th></th>
     </tr>
@@ -56,15 +59,17 @@
                 @Html.DisplayFor(modelItem => item.no_of_books)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.catagry_Id)
+                @Html.DisplayFor(modelItem => item.catagry.catagry_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher.P_name)
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.BId })*@
-
-                <a class="btn btn-success" href="@Url.Action("Borrow","Books", new {id=item.BId })">Borrow</a>
-
-               
-
+                <a href="@Url.Action("Borrow","Books",new { id=item.BId}) " class="btn btn-primary "> @*hna hn7ot el as el view w controller ally haidy ht3mlo*@
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                    Borrow
+                </a> 
 
             </td>
         </tr>
@@ -72,8 +77,6 @@
 
 
 </table>
-
-
 
 <p>
 
