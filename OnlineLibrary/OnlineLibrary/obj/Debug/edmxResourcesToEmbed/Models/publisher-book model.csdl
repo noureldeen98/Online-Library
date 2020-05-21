@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectDBModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BId" />
+    </Key>
+    <Property Name="BId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Bauthor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Bprice" Type="Int32" />
+    <Property Name="no_of_books" Type="Int32" />
+    <Property Name="catagry_Id" Type="Int32" Nullable="false" />
+    <Property Name="publisher_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="catagry" Relationship="Self.FK__Book__catagry_Id__5AEE82B9" FromRole="Book" ToRole="catagries" />
+    <NavigationProperty Name="Publisher" Relationship="Self.FK__Book__publisher___02084FDA" FromRole="Book" ToRole="Publisher" />
+  </EntityType>
+  <EntityType Name="catagry">
+    <Key>
+      <PropertyRef Name="catId" />
+    </Key>
+    <Property Name="catId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="catagry_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books" Relationship="Self.FK__Book__catagry_Id__5AEE82B9" FromRole="catagries" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Publisher">
+    <Key>
+      <PropertyRef Name="P_id" />
+    </Key>
+    <Property Name="P_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="P_address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="P_contact_no" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Books" Relationship="Self.FK__Book__publisher___02084FDA" FromRole="Publisher" ToRole="Book" />
+  </EntityType>
+  <Association Name="FK__Book__catagry_Id__5AEE82B9">
+    <End Role="catagries" Type="Self.catagry" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="catagries">
+        <PropertyRef Name="catId" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="catagry_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__publisher___02084FDA">
+    <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="P_id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="publisher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectDBEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="catagries" EntityType="Self.catagry" />
+    <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+    <AssociationSet Name="FK__Book__catagry_Id__5AEE82B9" Association="Self.FK__Book__catagry_Id__5AEE82B9">
+      <End Role="catagries" EntitySet="catagries" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__publisher___02084FDA" Association="Self.FK__Book__publisher___02084FDA">
+      <End Role="Publisher" EntitySet="Publishers" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
