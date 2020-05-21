@@ -2,20 +2,26 @@
 @{
     ViewBag.Title = "Search for Book";
 }
-
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
 <h2>Search</h2>
-<p>
-    <a href="@Url.Action("Create","Books")" class="btn btn-primary" target="_blank">
-        <span class="glyphicon glyphicon-heart"></span>
-        New Book
-    </a>
-</p>
+@*<p>
+        <a href="@Url.Action("Create","Books")" class="btn btn-primary" target="_blank">
+            <span class="glyphicon glyphicon-heart"></span>
+            New Book
+        </a>
+    </p>*@
 <p>
     @using (Html.BeginForm("Search", "Books", FormMethod.Get))
     {
-       <b>Search:</b>
-        @Html.TextBox("key") 
-        <input type="submit" value="search" class="btn btn-primary"  />
+        <b>Search:</b>
+        @Html.TextBox("key")
+        <input type="submit" value="search" class="btn btn-primary" />
     }
 </p>
 <table class="table table-striped">
@@ -69,19 +75,25 @@
                 @Html.DisplayFor(modelItem => item.publisher_id)
             </td>
             <td>
-                <a href="@Url.Action("Edit","Books",new { id=item.BId}) " class="btn btn-success ">
-                    <span class="glyphicon glyphicon-arrow-up"></span>
-                    Edit
-                </a> |
-                <a href="@Url.Action("Details","Books",new { id=item.BId}) " class="btn btn-toolbar ">
-                    <span class="glyphicon glyphicon-baby-formula"></span>
-                    Details
-                </a>
-                <a href="@Url.Action("Delete","Books",new { id=item.BId}) " class="btn btn-danger ">
-                    <span class="glyphicon glyphicon-arrow-down"></span>
-                    Delete
-                </a>
-            </td>
+                @*<a href="@Url.Action("Edit","Books",new { id=item.BId}) " class="btn btn-success ">
+                        <span class="glyphicon glyphicon-arrow-up"></span>
+                        Edit
+                    </a> |
+                    <a href="@Url.Action("Details","Books",new { id=item.BId}) " class="btn btn-toolbar ">
+                        <span class="glyphicon glyphicon-baby-formula"></span>
+                        Details
+                    </a>
+                    <a href="@Url.Action("Delete","Books",new { id=item.BId}) " class="btn btn-danger ">
+                        <span class="glyphicon glyphicon-arrow-down"></span>
+                        Delete
+                    </a>*@
+               
+                <div class="container">
+                    <a class="btn btn-success" data-toggle="popover" title="Online-Library" data-content="Borrow is done" href="@Url.Action("Borrow","Books", new {id=item.BId })">Borrow</a>
+
+                    <a class="btn btn-success" data-toggle="popover" title="Online-Library" data-content="Thanks for return the book" href="@Url.Action("Return_Book","Books", new {id=item.BId })">Return</a>
+                </div>
+             </td>
         </tr>
     }
 </table>
@@ -93,3 +105,8 @@
     @Html.ActionLink("User Editing", "Index", "Admin", null, new { @class = "btn btn-info" })
 </p>
 
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
