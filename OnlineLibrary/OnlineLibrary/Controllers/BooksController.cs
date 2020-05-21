@@ -134,6 +134,13 @@ namespace OnlineLibrary.Controllers
            // var listOfProducts = db.Products.Where(x => x.category_id == categoryID).ToList();
             return View(listOfBooks);
         }
+
+        public ActionResult Search_ByAdmin(string key)
+        {
+            var listOfBooks = db.Books.Where(x => x.Bname == key).ToList();
+            // var listOfProducts = db.Products.Where(x => x.category_id == categoryID).ToList();
+            return View(listOfBooks);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -143,6 +150,26 @@ namespace OnlineLibrary.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult Borrow(int id)
+        {
+            Book book = db.Books.Find(id);
+            int count_of_books = book.no_of_books.Value;
+            book.no_of_books = count_of_books - 1;
+            db.Entry(book).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index2");
+        }
+
+        public ActionResult Return_Book(int id)
+        {
+            Book book = db.Books.Find(id);
+            int count_of_books = book.no_of_books.Value;
+           
+            book.no_of_books = count_of_books + 1;
+            db.Entry(book).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index2");
+        }
 
     }
 }

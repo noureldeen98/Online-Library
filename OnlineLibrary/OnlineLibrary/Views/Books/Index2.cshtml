@@ -6,6 +6,13 @@
 
 <h1 class="glyphicon glyphicon-book">Books </h1>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 
 <p>
     @using (Html.BeginForm("Search", "Books", FormMethod.Get))
@@ -65,12 +72,11 @@
                 @Html.DisplayFor(modelItem => item.Publisher.P_name)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.BId })*@
-                <a href="@Url.Action("Borrow","Books",new { id=item.BId}) " class="btn btn-primary "> @*hna hn7ot el as el view w controller ally haidy ht3mlo*@
-                    <span class="glyphicon glyphicon-arrow-up"></span>
-                    Borrow
-                </a> 
+                <div class="container">
+                    <a class="btn btn-success" data-toggle="popover" title="Online-Library" data-content="Borrow is done" href="@Url.Action("Borrow","Books", new {id=item.BId })">Borrow</a>
 
+                    <a class="btn btn-success" data-toggle="popover" title="Online-Library" data-content="Thanks for return the book" href="@Url.Action("Return_Book","Books", new {id=item.BId })">Return</a>
+                </div>
             </td>
         </tr>
     }
@@ -83,3 +89,8 @@
     @Html.ActionLink("Back to home", "Index", "Home", null, new { @class = "btn btn-info" })
 </p>
 
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
