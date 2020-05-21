@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectDBModel2StoreContainer" CdmEntityContainer="ProjectDBEntities3">
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="ProjectDBModel2.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="BId" ColumnName="BId" />
+          <ScalarProperty Name="Bname" ColumnName="Bname" />
+          <ScalarProperty Name="Bauthor" ColumnName="Bauthor" />
+          <ScalarProperty Name="Bprice" ColumnName="Bprice" />
+          <ScalarProperty Name="no_of_books" ColumnName="no_of_books" />
+          <ScalarProperty Name="catagry_Id" ColumnName="catagry_Id" />
+          <ScalarProperty Name="publisher_id" ColumnName="publisher-id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="catagries">
+      <EntityTypeMapping TypeName="ProjectDBModel2.catagry">
+        <MappingFragment StoreEntitySet="catagries">
+          <ScalarProperty Name="catId" ColumnName="catId" />
+          <ScalarProperty Name="catagry_name" ColumnName="catagry_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="ProjectDBModel2.Publisher">
+        <MappingFragment StoreEntitySet="Publisher">
+          <ScalarProperty Name="P_id" ColumnName="P-id" />
+          <ScalarProperty Name="P_name" ColumnName="P-name" />
+          <ScalarProperty Name="P_address" ColumnName="P-address" />
+          <ScalarProperty Name="P_contact_no" ColumnName="P-contact-no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

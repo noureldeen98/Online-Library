@@ -133,15 +133,16 @@
     <Compile Include="Controllers\catagriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PublishersController.cs" />
     <Compile Include="Controllers\UserRegistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>publisher-book model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\catagry.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>publisher-book model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomizeBook.cs" />
     <Compile Include="Models\DBModels.Context.cs">
@@ -173,6 +174,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Book-category model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\publisher-book model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>publisher-book model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\publisher-book model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>publisher-book model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\publisher-book model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>publisher-book model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publisher.cs">
+      <DependentUpon>publisher-book model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsersTable.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
@@ -213,6 +232,16 @@
       <DependentUpon>Book-category model.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\publisher-book model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>publisher-book model.edmx</DependentUpon>
+      <LastGenOutput>publisher-book model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\publisher-book model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>publisher-book model.edmx</DependentUpon>
+      <LastGenOutput>publisher-book model.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\DBModels.edmx">
@@ -228,6 +257,13 @@
     </EntityDeploy>
     <Content Include="Models\Book-category model.edmx.diagram">
       <DependentUpon>Book-category model.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\publisher-book model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>publisher-book model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\publisher-book model.edmx.diagram">
+      <DependentUpon>publisher-book model.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -274,6 +310,11 @@
     <Content Include="Views\Books\Search.cshtml" />
     <Content Include="Views\Admin\SearchUser.cshtml" />
     <Content Include="Views\Books\Index2.cshtml" />
+    <Content Include="Views\Publishers\Create.cshtml" />
+    <Content Include="Views\Publishers\Delete.cshtml" />
+    <Content Include="Views\Publishers\Details.cshtml" />
+    <Content Include="Views\Publishers\Edit.cshtml" />
+    <Content Include="Views\Publishers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

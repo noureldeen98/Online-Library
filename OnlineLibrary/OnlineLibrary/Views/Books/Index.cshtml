@@ -38,7 +38,10 @@
             @Html.DisplayNameFor(model => model.no_of_books)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.catagry_Id)
+            @Html.DisplayNameFor(model => model.catagry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher)
         </th>
         <th></th>
     </tr>
@@ -62,7 +65,10 @@
         @Html.DisplayFor(modelItem => item.no_of_books)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.catagry_Id)
+        @Html.DisplayFor(modelItem => item.catagry.catagry_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Publisher.P_name)
     </td>
     <td>
         @*@Html.ActionLink("Edit", "Edit", new { id = item.BId })*@
@@ -78,9 +84,9 @@
         @*@Html.ActionLink("Details", "Details", new { id = item.BId }) |*@
         @*@Html.ActionLink("Delete", "Delete", new { id = item.BId })*@
         <a href="@Url.Action("Delete","Books",new { id=item.BId}) " class="btn btn-danger ">
-                <span class="glyphicon glyphicon-arrow-down" ></span>
-               Delete
-            </a>
+            <span class="glyphicon glyphicon-arrow-down"></span>
+            Delete
+        </a>
     </td>
 </tr>
     }

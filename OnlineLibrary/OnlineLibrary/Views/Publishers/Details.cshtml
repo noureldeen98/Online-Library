@@ -1,0 +1,42 @@
+﻿@model OnlineLibrary.Models.Publisher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Publisher Details</h2>
+
+<div>
+    @*<h4>Publisher</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.P_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.P_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.P_contact_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_contact_no)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Update", "Edit", new { id = Model.P_id },new {@class ="btn btn-success" }) |
+    @Html.ActionLink("Back ", "Index", null, new { @class = "btn btn-info" })
+</p>

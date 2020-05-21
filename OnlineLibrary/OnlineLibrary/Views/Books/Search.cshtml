@@ -38,6 +38,9 @@
         <th>
             @Html.DisplayNameFor(model => model.catagry_Id)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.publisher_id)
+        </th>
         <th></th>
     </tr>
 
@@ -61,6 +64,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.catagry_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publisher_id)
             </td>
             <td>
                 <a href="@Url.Action("Edit","Books",new { id=item.BId}) " class="btn btn-success ">

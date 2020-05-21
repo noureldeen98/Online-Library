@@ -20,7 +20,9 @@ namespace OnlineLibrary.Models
         public Nullable<int> Bprice { get; set; }
         public Nullable<int> no_of_books { get; set; }
         public int catagry_Id { get; set; }
+        public int publisher_id { get; set; }
     
         public virtual catagry catagry { get; set; }
+        public virtual Publisher Publisher { get; set; }
     }
 }
