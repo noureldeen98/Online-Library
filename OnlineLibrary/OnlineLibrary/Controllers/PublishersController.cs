@@ -114,7 +114,11 @@ namespace OnlineLibrary.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public ActionResult Search(string key)
+        {
+            var listOfBooks = db.Publishers.Where(x => x.P_name == key).ToList();
+            return View(listOfBooks);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
