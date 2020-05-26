@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OnlineLibrary.Models.Publisher>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search Publisher</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.P_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_contact_no)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_contact_no)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Books",new { id=item.P_id}) " class="btn btn-success ">
+                <span class="glyphicon glyphicon-arrow-up"></span>
+                Edit
+            </a> |
+            <a href="@Url.Action("Details","Books",new { id=item.P_id}) " class="btn btn-toolbar ">
+                <span class="glyphicon glyphicon-baby-formula"></span>
+                Details
+            </a>
+            <a href="@Url.Action("Delete","Books",new { id=item.P_id}) " class="btn btn-danger ">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+                Delete
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

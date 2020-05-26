@@ -316,6 +316,7 @@
     <Content Include="Views\Publishers\Edit.cshtml" />
     <Content Include="Views\Publishers\Index.cshtml" />
     <Content Include="Views\Books\Search_ByAdmin.cshtml" />
+    <Content Include="Views\Publishers\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
